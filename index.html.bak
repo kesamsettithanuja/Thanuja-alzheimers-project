@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alzheimer Detection System</title>
+
+<style>
+/* ---------- GLOBAL ---------- */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: 'Segoe UI', Arial;
+  background: linear-gradient(120deg,#eaf2ff,#f7fbff);
+  color:#0a2540;
+}
+
+/* ---------- TOP BAR ---------- */
+.topbar{
+  display:flex;
+  align-items:center;
+  padding:18px 30px;
+  background:#ffffff;
+  box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
+.topbar .logo{
+  font-size:22px;
+  font-weight:700;
+  color:#004aad;
+}
+.topbar .actions{
+  margin-left:auto;
+}
+.topbar button{
+  background:#004aad;
+  color:#fff;
+  border:none;
+  padding:10px 18px;
+  margin-left:10px;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:600;
+}
+.topbar button.outline{
+  background:#fff;
+  color:#004aad;
+  border:2px solid #004aad;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  display:flex;
+  padding:70px 8%;
+  align-items:center;
+}
+.hero-text{
+  width:55%;
+}
+.hero-text h1{
+  font-size:44px;
+  margin-bottom:10px;
+}
+.hero-text p{
+  font-size:18px;
+  line-height:1.6;
+}
+.hero-text .tag{
+  margin-top:15px;
+  font-style:italic;
+  color:#004aad;
+}
+.hero-visual{
+  width:45%;
+  text-align:center;
+}
+.hero-visual .img-box{
+  height:280px;
+  background:linear-gradient(135deg,#004aad,#5fa8ff);
+  border-radius:20px;
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:22px;
+  font-weight:600;
+}
+
+/* ---------- FEATURES ---------- */
+.features{
+  display:flex;
+  gap:25px;
+  padding:40px 8%;
+}
+.feature{
+  background:#fff;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
+  flex:1;
+}
+.feature h3{color:#004aad}
+
+/* ---------- INFO STRIP ---------- */
+.strip{
+  margin:40px 8%;
+  background:#004aad;
+  color:#fff;
+  padding:30px;
+  border-radius:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  margin-top:50px;
+  padding:20px;
+  text-align:center;
+  background:#002f6c;
+  color:#fff;
+}
+
+/* ---------- LOGIN / REGISTER PANEL ---------- */
+.panel{
+  position:fixed;
+  top:0;
+  left:-420px;
+  width:400px;
+  height:100%;
+  background:#fff;
+  box-shadow:8px 0 30px rgba(0,0,0,.25);
+  padding:30px;
+  transition:.4s;
+  z-index:1000;
+}
+.panel.active{left:0}
+.panel h2{color:#004aad}
+.panel input{
+  width:100%;
+  padding:12px;
+  margin:12px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+.panel button{
+  width:100%;
+  padding:12px;
+  background:#004aad;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+}
+.close{
+  text-align:right;
+  cursor:pointer;
+  color:#004aad;
+  font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo">🧠 Alzheimer Detection</div>
+  <div class="actions">
+    <button class="outline" onclick="openLogin()">Login</button>
+    <button onclick="openRegister()">Register</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Early Diagnosis of Alzheimer’s Disease</h1>
+    <p>
+      An AI-powered medical web application that analyzes
+      brain MRI images using Deep Learning techniques to
+      identify Alzheimer’s disease at an early stage.
+    </p>
+    <div class="tag">
+      “Detect early. Protect memories.”
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="img-box">
+      AI + Brain MRI
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="feature">
+    <h3>AI-Based Analysis</h3>
+    <p>Uses deep learning models trained on MRI images for accurate classification.</p>
+  </div>
+  <div class="feature">
+    <h3>Medical-Grade UI</h3>
+    <p>Hospital-style interface designed for professional and academic use.</p>
+  </div>
+  <div class="feature">
+    <h3>Secure Access</h3>
+    <p>Login and account-based access to ensure data privacy.</p>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div class="strip">
+  <div>
+    <h2>Why Early Detection Matters?</h2>
+    <p>Early diagnosis helps slow disease progression and improves patient care planning.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+© 2026 | Developed by Leela | All Rights Reserved
+</footer>
+<!-- LOGIN PANEL -->
+<div class="panel" id="loginPanel">
+  <div class="close" onclick="closePanels()">✖</div>
+  <h2>Login</h2>
+
+  <input placeholder="Username" required>
+  <input type="password" placeholder="Password" required>
+
+  <button onclick="goToDashboard()">Login</button>
+</div>
+
+<!-- REGISTER PANEL -->
+<div class="panel" id="registerPanel">
+  <div class="close" onclick="closePanels()">✖</div>
+  <h2>Create Account</h2>
+
+  <input placeholder="Username" required>
+  <input type="password" placeholder="Password" required>
+
+  <button onclick="goToDashboard()">Register</button>
+</div>
+
+<script>
+function openLogin(){
+  closePanels();
+  document.getElementById("loginPanel").classList.add("active");
+}
+function openRegister(){
+  closePanels();
+  document.getElementById("registerPanel").classList.add("active");
+}
+function closePanels(){
+  document.getElementById("loginPanel").classList.remove("active");
+  document.getElementById("registerPanel").classList.remove("active");
+}
+function goToDashboard(){
+  window.location.href = "dashboard.html";
+}
+</script>
+</body>
+</html>
